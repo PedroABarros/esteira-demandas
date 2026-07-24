@@ -1,0 +1,487 @@
+/* ==========================================================
+                    BOTÕES
+========================================================== */
+
+.btn{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+.btn i{
+
+    font-size:14px;
+
+}
+
+.btn-primary{
+
+    background:#3454d1;
+
+    color:#fff;
+
+}
+
+.btn-primary:hover{
+
+    background:#2742b5;
+
+}
+
+.btn-secondary{
+
+    background:#eef2f8;
+
+    color:#4c5a6b;
+
+}
+
+.btn-secondary:hover{
+
+    background:#dce4ef;
+
+}
+
+.btn-success{
+
+    background:#22c55e;
+
+    color:#fff;
+
+}
+
+.btn-success:hover{
+
+    background:#16a34a;
+
+}
+
+.btn-warning{
+
+    background:#f59e0b;
+
+    color:#fff;
+
+}
+
+.btn-warning:hover{
+
+    background:#d97706;
+
+}
+
+.btn-danger{
+
+    background:#ef4444;
+
+    color:#fff;
+
+}
+
+.btn-danger:hover{
+
+    background:#dc2626;
+
+}
+
+/* ==========================================================
+                    PAINÉIS
+========================================================== */
+
+.panel{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #e7edf5;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+    padding:25px;
+
+}
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.panel-header h3{
+
+    font-size:18px;
+
+    color:#263445;
+
+}
+
+.panel-action{
+
+    border:none;
+
+    background:#eef3ff;
+
+    color:#3454d1;
+
+    padding:8px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================================================
+                    CARDS
+========================================================== */
+
+.card{
+
+    background:#fff;
+
+    border:1px solid #e8edf5;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================================
+                    INPUTS
+========================================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:18px;
+
+}
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+.form-group label{
+
+    font-size:13px;
+
+    color:#5d6978;
+
+    font-weight:600;
+
+}
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+    width:100%;
+
+    border:1px solid #dce4ef;
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    background:#fafbfd;
+
+    outline:none;
+
+    transition:.25s;
+
+    resize:none;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus{
+
+    border-color:#3454d1;
+
+    background:#fff;
+
+}
+
+/* ==========================================================
+                    BADGES
+========================================================== */
+
+.badge{
+
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.badge-blue{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+.badge-green{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.badge-red{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.badge-orange{
+
+    background:#ffedd5;
+
+    color:#ea580c;
+
+}
+
+.badge-gray{
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+}
+
+/* ==========================================================
+                    PRIORIDADES
+========================================================== */
+
+.priority{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+}
+
+.priority.low{
+
+    background:#22c55e;
+
+}
+
+.priority.medium{
+
+    background:#f59e0b;
+
+}
+
+.priority.high{
+
+    background:#ef4444;
+
+}
+
+.priority.critical{
+
+    background:#991b1b;
+
+}
+
+/* ==========================================================
+                    EMPTY STATE
+========================================================== */
+
+.empty-state{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:60px 20px;
+
+    text-align:center;
+
+    color:#8a96a8;
+
+}
+
+.empty-state i{
+
+    font-size:46px;
+
+    margin-bottom:20px;
+
+    color:#c6cfdb;
+
+}
+
+.empty-state h4{
+
+    margin-bottom:8px;
+
+    color:#435364;
+
+}
+
+.empty-state p{
+
+    max-width:400px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+                    SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#c8d2e1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#aab6c7;
+
+}
+
+/* ==========================================================
+                    ANIMAÇÕES
+========================================================== */
+
+.fade-in{
+
+    animation:fade .3s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(8px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.scale-in{
+
+    animation:scale .25s ease;
+
+}
+
+@keyframes scale{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}

@@ -1,0 +1,543 @@
+/* ==========================================================
+                    KANBAN
+========================================================== */
+
+#kanban{
+
+    display:none;
+
+    animation:fade .3s ease;
+
+}
+
+#kanban.active-page{
+
+    display:block;
+
+}
+
+/* ==========================================================
+                    TOPO
+========================================================== */
+
+.kanban-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.kanban-header-left h2{
+
+    font-size:28px;
+
+    color:#263445;
+
+    margin-bottom:5px;
+
+}
+
+.kanban-header-left span{
+
+    color:#7f8b9b;
+
+}
+
+.kanban-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+/* ==========================================================
+                    BOARD
+========================================================== */
+
+.kanban-board{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+    align-items:start;
+
+}
+
+/* ==========================================================
+                    COLUNAS
+========================================================== */
+
+.kanban-column{
+
+    background:#f5f7fb;
+
+    border-radius:18px;
+
+    min-height:650px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.column-header{
+
+    padding:20px;
+
+    border-bottom:1px solid #e3e8f1;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.column-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.column-title h3{
+
+    font-size:17px;
+
+}
+
+.column-count{
+
+    background:#fff;
+
+    color:#3454d1;
+
+    width:28px;
+
+    height:28px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.column-body{
+
+    padding:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    flex:1;
+
+}
+
+/* ==========================================================
+                    CORES DAS COLUNAS
+========================================================== */
+
+.todo .column-header{
+
+    border-left:5px solid #64748b;
+
+}
+
+.progress .column-header{
+
+    border-left:5px solid #f59e0b;
+
+}
+
+.done .column-header{
+
+    border-left:5px solid #22c55e;
+
+}
+
+/* ==========================================================
+                    CARD
+========================================================== */
+
+.task-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    border:1px solid #e6edf5;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+
+    transition:.25s;
+
+    cursor:pointer;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 28px rgba(0,0,0,.10);
+
+}
+
+.task-title{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#263445;
+
+    margin-bottom:12px;
+
+}
+
+.task-description{
+
+    color:#7d8898;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+
+}
+
+/* ==========================================================
+                    TAGS
+========================================================== */
+
+.task-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+.task-tag{
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.tag-bi{
+
+    background:#fff3e8;
+
+    color:#ea580c;
+
+}
+
+.tag-reuniao{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.tag-comercial{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+.tag-urgente{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.tag-outros{
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+}
+
+/* ==========================================================
+                    TEMPOS
+========================================================== */
+
+.task-times{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+}
+
+.task-time{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.task-time label{
+
+    font-size:11px;
+
+    color:#94a3b8;
+
+}
+
+.task-time strong{
+
+    color:#263445;
+
+    font-size:14px;
+
+}
+
+/* ==========================================================
+                    PROGRESSO
+========================================================== */
+
+.task-progress{
+
+    margin-bottom:18px;
+
+}
+
+.progress-bar{
+
+    height:8px;
+
+    border-radius:20px;
+
+    background:#edf2fb;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:#3454d1;
+
+    transition:.3s;
+
+}
+
+/* ==========================================================
+                    RODAPÉ
+========================================================== */
+
+.task-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.task-priority{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.task-actions{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.task-actions button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.play-btn{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+.play-btn:hover{
+
+    background:#22c55e;
+
+    color:#fff;
+
+}
+
+.pause-btn{
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+}
+
+.pause-btn:hover{
+
+    background:#f59e0b;
+
+    color:#fff;
+
+}
+
+.finish-btn{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.finish-btn:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+                    NOVO CARD
+========================================================== */
+
+.add-card{
+
+    border:2px dashed #d5dce8;
+
+    border-radius:16px;
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#8b98a8;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.add-card:hover{
+
+    background:#eef3ff;
+
+    border-color:#3454d1;
+
+    color:#3454d1;
+
+}
+
+/* ==========================================================
+                    DRAG & DROP
+========================================================== */
+
+.task-card.dragging{
+
+    opacity:.5;
+
+    transform:rotate(3deg);
+
+}
+
+.column-body.drag-over{
+
+    background:#edf3ff;
+
+    border-radius:16px;
+
+}
+
+/* ==========================================================
+                    RESPONSIVO
+========================================================== */
+
+@media(max-width:1200px){
+
+    .kanban-board{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

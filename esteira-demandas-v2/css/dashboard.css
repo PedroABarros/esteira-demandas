@@ -1,0 +1,413 @@
+/* ==========================================================
+                    DASHBOARD
+========================================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:28px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    border:1px solid #e8edf5;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+
+    transition:.25s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 14px 30px rgba(0,0,0,.08);
+
+}
+
+.stat-card.primary{
+
+    background:linear-gradient(135deg,#3454d1,#5674ea);
+
+    color:#fff;
+
+}
+
+.stat-card.primary small,
+
+.stat-card.primary span,
+
+.stat-card.primary i{
+
+    color:#fff;
+
+    opacity:.9;
+
+}
+
+.stat-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.stat-header span{
+
+    font-size:14px;
+
+    color:#7f8b9b;
+
+}
+
+.stat-header i{
+
+    font-size:20px;
+
+    color:#3454d1;
+
+}
+
+.stat-card h2{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+}
+
+.stat-card small{
+
+    color:#8d98a9;
+
+}
+
+/* ==========================================================
+                    GRID
+========================================================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:380px 1fr;
+
+    gap:25px;
+
+    margin-bottom:28px;
+
+}
+
+/* ==========================================================
+                PRODUTIVIDADE
+========================================================== */
+
+.productivity-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.progress-circle{
+
+    width:220px;
+
+    height:220px;
+
+    margin:30px auto;
+
+    border-radius:50%;
+
+    background:conic-gradient(
+
+        #3454d1 0deg,
+
+        #3454d1 40deg,
+
+        #edf2fb 40deg
+
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.progress-circle::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+}
+
+.progress-value{
+
+    position:relative;
+
+    text-align:center;
+
+    z-index:2;
+
+}
+
+.progress-value h1{
+
+    font-size:40px;
+
+    color:#3454d1;
+
+}
+
+.progress-value span{
+
+    color:#7f8b9b;
+
+}
+
+.progress-info{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin-top:20px;
+
+}
+
+.progress-info div{
+
+    text-align:center;
+
+}
+
+.progress-info strong{
+
+    display:block;
+
+    font-size:24px;
+
+    color:#263445;
+
+}
+
+.progress-info span{
+
+    color:#8a97a8;
+
+    font-size:13px;
+
+}
+
+/* ==========================================================
+                TAREFA ATUAL
+========================================================== */
+
+.current-task-panel{
+
+    min-height:390px;
+
+}
+
+.current-task-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100%;
+
+    color:#9aa6b6;
+
+    text-align:center;
+
+}
+
+.current-task-empty i{
+
+    font-size:60px;
+
+    margin-bottom:25px;
+
+    color:#d2d9e4;
+
+}
+
+.current-task-empty h4{
+
+    font-size:22px;
+
+    color:#445364;
+
+    margin-bottom:10px;
+
+}
+
+.current-task-empty p{
+
+    max-width:350px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+                HISTÓRICO
+========================================================== */
+
+.activity-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.activity-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    transition:.25s;
+
+}
+
+.activity-item:hover{
+
+    background:#eef3ff;
+
+}
+
+.activity-icon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:#3454d1;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+}
+
+.activity-content{
+
+    flex:1;
+
+}
+
+.activity-content h4{
+
+    font-size:15px;
+
+    margin-bottom:4px;
+
+}
+
+.activity-content span{
+
+    color:#8b97a7;
+
+    font-size:13px;
+
+}
+
+.activity-time{
+
+    font-weight:600;
+
+    color:#3454d1;
+
+}
+
+/* ==========================================================
+                RESPONSIVO
+========================================================== */
+
+@media(max-width:1400px){
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:1100px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

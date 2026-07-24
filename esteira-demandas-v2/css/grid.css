@@ -1,0 +1,299 @@
+/* ==========================================================
+                    TIMELINE
+========================================================== */
+
+.timeline-container{
+
+    display:flex;
+
+    background:#fff;
+
+    border:1px solid #e8edf5;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    height:720px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+/* ==========================================================
+                    HORÁRIOS
+========================================================== */
+
+.timeline-hours{
+
+    width:80px;
+
+    background:#f8fafc;
+
+    border-right:1px solid #e5e7eb;
+
+    flex-shrink:0;
+
+}
+
+.timeline-hour{
+
+    height:60px;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:center;
+
+    padding-top:4px;
+
+    font-size:12px;
+
+    color:#64748b;
+
+    font-weight:600;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+/* ==========================================================
+                    ÁREA PRINCIPAL
+========================================================== */
+
+.timeline-grid{
+
+    flex:1;
+
+    position:relative;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+}
+
+/* ==========================================================
+                    GRADE
+========================================================== */
+
+.timeline-background{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.timeline-row{
+
+    height:60px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.timeline-row:nth-child(even){
+
+    background:#fbfcfe;
+
+}
+
+/* ==========================================================
+                    LINHA DO HORÁRIO ATUAL
+========================================================== */
+
+#currentTimeLine{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    height:2px;
+
+    background:#ef4444;
+
+    z-index:30;
+
+}
+
+#currentTimeLine::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-5px;
+
+    top:-4px;
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+}
+
+/* ==========================================================
+                    EVENTOS
+========================================================== */
+
+#timelineEvents{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.timeline-event{
+
+    position:absolute;
+
+    left:12px;
+
+    right:12px;
+
+    border-radius:12px;
+
+    color:#fff;
+
+    padding:10px 14px;
+
+    overflow:hidden;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+
+    transition:.2s;
+
+}
+
+.timeline-event:hover{
+
+    transform:scale(1.01);
+
+}
+
+.timeline-event h4{
+
+    font-size:14px;
+
+    margin-bottom:6px;
+
+}
+
+.timeline-event span{
+
+    font-size:12px;
+
+    opacity:.9;
+
+}
+
+/* ==========================================================
+                    CORES
+========================================================== */
+
+.timeline-event.bi{
+
+    background:#f97316;
+
+}
+
+.timeline-event.reuniao{
+
+    background:#2563eb;
+
+}
+
+.timeline-event.comercial{
+
+    background:#16a34a;
+
+}
+
+.timeline-event.urgente{
+
+    background:#dc2626;
+
+}
+
+.timeline-event.outros{
+
+    background:#64748b;
+
+}
+
+/* ==========================================================
+                    EXECUTANDO
+========================================================== */
+
+.timeline-event.running{
+
+    animation:pulseRunning 2s infinite;
+
+}
+
+@keyframes pulseRunning{
+
+    0%{
+
+        box-shadow:0 0 0 0 rgba(52,84,209,.45);
+
+    }
+
+    70%{
+
+        box-shadow:0 0 0 12px rgba(52,84,209,0);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 0 0 rgba(52,84,209,0);
+
+    }
+
+}
+
+/* ==========================================================
+                    PAUSADA
+========================================================== */
+
+.timeline-event.paused{
+
+    opacity:.7;
+
+    filter:grayscale(.15);
+
+}
+
+/* ==========================================================
+                    FINALIZADA
+========================================================== */
+
+.timeline-event.finished{
+
+    opacity:.95;
+
+}
+
+/* ==========================================================
+                    RESPONSIVO
+========================================================== */
+
+@media(max-width:900px){
+
+    .timeline-container{
+
+        height:600px;
+
+    }
+
+}

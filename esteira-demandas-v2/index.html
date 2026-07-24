@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Esteira de Demandas V2</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/kanban.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/modal.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ===========================
+            SIDEBAR
+    ============================ -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+            </div>
+
+            <div class="logo-text">
+
+                <h2>Esteira</h2>
+
+                <span>Demandas V2</span>
+
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <button class="menu-item active" data-page="dashboard">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </button>
+
+            <button class="menu-item" data-page="kanban">
+
+                <i class="fa-solid fa-table-columns"></i>
+
+                <span>Lista de Tarefas</span>
+
+            </button>
+
+            <button class="menu-item" data-page="timeline">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Grade Horária</span>
+
+            </button>
+
+            <button class="menu-item" data-page="reports">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Relatórios</span>
+
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button class="menu-item">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Configurações</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- ===========================
+            CONTEÚDO
+    ============================ -->
+
+    <main class="content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="icon-btn" id="btnMenu">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <div>
+
+                    <h1 id="pageTitle">
+
+                        Dashboard
+
+                    </h1>
+
+                    <span id="todayDate">
+
+                        Sexta-feira, 24 de Julho
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Pesquisar tarefas..."
+                    >
+
+                </div>
+
+                <button class="icon-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <div class="user">
+
+                    <div class="avatar">
+
+                        P
+
+                    </div>
+
+                    <div>
+
+                        <strong>Pedro</strong>
+
+                        <span>Analista</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ===========================================================
+                        DASHBOARD
+============================================================ -->
+
+<section id="dashboard" class="page active-page">
+
+    <!-- ==========================
+            CARDS DE RESUMO
+    =========================== -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card primary">
+
+            <div class="stat-header">
+                <span>Horas Trabalhadas</span>
+                <i class="fa-regular fa-clock"></i>
+            </div>
+
+            <h2 id="workedHours">
+                00h 00m
+            </h2>
+
+            <small>
+                Tempo executado hoje
+            </small>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-header">
+                <span>Horas Planejadas</span>
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <h2 id="plannedHours">
+                07h 30m
+            </h2>
+
+            <small>
+                Expediente de hoje
+            </small>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-header">
+                <span>Demandas Abertas</span>
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <h2 id="openTasks">
+                0
+            </h2>
+
+            <small>
+                Ainda não finalizadas
+            </small>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-header">
+                <span>Concluídas</span>
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <h2 id="finishedTasks">
+                0
+            </h2>
+
+            <small>
+                Finalizadas hoje
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+            SEGUNDA LINHA
+    =========================== -->
+
+    <div class="dashboard-grid">
+
+        <!-- PRODUTIVIDADE -->
+
+        <div class="panel productivity-panel">
+
+            <div class="panel-header">
+
+                <h3>Produtividade</h3>
+
+                <button class="panel-action">
+
+                    Hoje
+
+                </button>
+
+            </div>
+
+            <div class="progress-circle">
+
+                <div class="progress-value">
+
+                    <h1 id="productivityValue">
+                        0%
+                    </h1>
+
+                    <span>do dia concluído</span>
+
+                </div>
+
+            </div>
+
+            <div class="progress-info">
+
+                <div>
+
+                    <strong id="freeHours">
+
+                        07h30
+
+                    </strong>
+
+                    <span>Livres</span>
+
+                </div>
+
+                <div>
+
+                    <strong id="busyHours">
+
+                        00h00
+
+                    </strong>
+
+                    <span>Ocupadas</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TAREFA ATUAL -->
+
+        <div class="panel current-task-panel">
+
+            <div class="panel-header">
+
+                <h3>Em Execução</h3>
+
+            </div>
+
+            <div class="current-task-empty" id="currentTask">
+
+                <i class="fa-solid fa-mug-hot"></i>
+
+                <h4>
+
+                    Nenhuma tarefa em execução
+
+                </h4>
+
+                <p>
+
+                    Assim que iniciar uma tarefa ela aparecerá aqui.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+            ÚLTIMAS ATIVIDADES
+    =========================== -->
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <h3>
+
+                Últimas Atividades
+
+            </h3>
+
+            <button class="panel-action">
+
+                Ver Tudo
+
+            </button>
+
+        </div>
+
+        <div class="activity-list" id="activityList">
+
+            <div class="empty-state">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <h4>
+
+                    Nenhuma atividade registrada
+
+                </h4>
+
+                <p>
+
+                    O histórico será criado automaticamente conforme você utilizar o sistema.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================================================
+                        LISTA DE TAREFAS
+============================================================ -->
+
+<section id="kanban" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h2>Lista de Tarefas</h2>
+            <p>Organize suas demandas antes de enviá-las para a grade.</p>
+        </div>
+
+        <div class="page-actions">
+
+            <button class="btn btn-secondary" id="btnFilterTasks">
+                <i class="fa-solid fa-filter"></i>
+                Filtrar
+            </button>
+
+            <button class="btn btn-primary" id="btnNewTask">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Nova Tarefa
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- KANBAN -->
+
+    <div class="kanban-board">
+
+        <!-- A FAZER -->
+
+        <div class="kanban-column">
+
+            <div class="kanban-header todo">
+
+                <h3>
+
+                    <i class="fa-regular fa-circle"></i>
+
+                    A Fazer
+
+                </h3>
+
+                <span id="todoCount" class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                class="kanban-list"
+                id="todoList">
+
+            </div>
+
+        </div>
+
+        <!-- EM EXECUÇÃO -->
+
+        <div class="kanban-column">
+
+            <div class="kanban-header doing">
+
+                <h3>
+
+                    <i class="fa-solid fa-play"></i>
+
+                    Em Execução
+
+                </h3>
+
+                <span id="doingCount" class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                class="kanban-list"
+                id="doingList">
+
+            </div>
+
+        </div>
+
+        <!-- FINALIZADAS -->
+
+        <div class="kanban-column">
+
+            <div class="kanban-header done">
+
+                <h3>
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Finalizadas
+
+                </h3>
+
+                <span id="doneCount" class="badge">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                class="kanban-list"
+                id="doneList">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================================================
+                    MODAL NOVA TAREFA
+============================================================ -->
+
+<div class="modal-overlay" id="taskModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Nova Tarefa</h2>
+
+            <button class="icon-btn" id="btnCloseModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+
+                <label>Título</label>
+
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="Digite a tarefa..."
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Categoria</label>
+
+                <select id="taskCategory">
+
+                    <option value="comercial">Comercial</option>
+                    <option value="bi">BI</option>
+                    <option value="reuniao">Reunião</option>
+                    <option value="urgente">Urgente</option>
+                    <option value="outros">Outros</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Duração Prevista</label>
+
+                    <input
+                        type="number"
+                        id="taskDuration"
+                        value="30"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Prioridade</label>
+
+                    <select id="taskPriority">
+
+                        <option value="baixa">Baixa</option>
+                        <option value="media" selected>Média</option>
+                        <option value="alta">Alta</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Observações</label>
+
+                <textarea
+                    id="taskDescription"
+                    rows="4"
+                    placeholder="Opcional..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                id="btnCancelTask">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="btn btn-primary"
+                id="btnSaveTask">
+
+                Salvar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ===========================================================
+                        TIMELINE
+============================================================ -->
+
+<section id="timeline" class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Timeline do Dia</h2>
+            <p>A execução das tarefas é refletida automaticamente aqui.</p>
+
+        </div>
+
+        <div class="page-actions">
+
+            <button class="btn btn-secondary" id="btnToday">
+
+                <i class="fa-solid fa-calendar-day"></i>
+
+                Hoje
+
+            </button>
+            <button class="btn btn-secondary" id="btnGoCurrent">
+
+                <i class="fa-solid fa-location-crosshairs"></i>
+                Agora
+
+            </button>
+
+            <button class="btn btn-primary" id="btnRefreshTimeline">
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+                Atualizar
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- RESUMO -->
+
+    <div class="timeline-summary">
+
+        <div class="summary-card">
+
+            <span>Horas Planejadas</span>
+
+            <h2 id="timelineWorked">
+                00h00
+            </h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <span>Tempo Executado</span>
+
+            <h2 id="timelineExecuted">
+                00h00
+            </h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <span>Tempo Livre</span>
+
+            <h2 id="timelineFree">
+                07h30
+            </h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <span>Produtividade</span>
+
+            <h2 id="timelinePercent">0%</h2>
+
+        </div>
+        <div class="summary-card">
+
+            <span>Tarefas Finalizadas</span>
+
+            <h2 id="timelineFinished">0</h2>
+
+        </div>
+
+    </div>
+
+    <!-- GRADE -->
+
+    <div class="timeline-container">
+
+        <!-- Horários -->
+
+        <div class="timeline-hours" id="timelineHours">
+
+        </div>
+
+        <!-- Corpo -->
+
+        <div class="timeline-grid">
+
+            <div class="timeline-background" id="timelineBackground"></div>
+
+    <div id="currentTimeLine"></div>
+
+    <div id="timelineEvents">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================================================
+                        RELATÓRIOS
+============================================================ -->
+
+<section id="reports" class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Relatórios</h2>
+
+            <p>Acompanhe sua produtividade.</p>
+
+        </div>
+
+    </div>
+
+    <div class="reports-grid">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>Resumo do Dia</h3>
+
+            </div>
+
+            <canvas id="chartDay"></canvas>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>Tempo por Categoria</h3>
+
+            </div>
+
+            <canvas id="chartCategory"></canvas>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>Produtividade Semanal</h3>
+
+            </div>
+
+            <canvas id="chartWeek"></canvas>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>Tempo de Pausas</h3>
+
+            </div>
+
+            <canvas id="chartBreaks"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================================
+            WORKSPACE
+=========================================== -->
+
+<section class="workspace" id="workspace">
+
+    <div class="workspace-header">
+
+        <div>
+
+            <span>Tarefa Atual</span>
+
+            <h2 id="workspaceTitle">
+
+                Nenhuma tarefa em execução
+
+            </h2>
+
+        </div>
+
+        <div class="workspace-status">
+
+            Aguardando
+
+        </div>
+
+    </div>
+
+    <div class="workspace-timer">
+
+        <h1 id="workspaceTimer">
+
+            00:00:00
+
+        </h1>
+
+    </div>
+
+    <div class="workspace-progress">
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="workspaceProgress">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="workspace-infos">
+
+        <div>
+
+            <span>Previsto</span>
+
+            <strong id="workspaceEstimated">
+
+                00:00
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>Executado</span>
+
+            <strong id="workspaceExecuted">
+
+                00:00
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>Restante</span>
+
+            <strong id="workspaceRemaining">
+
+                00:00
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="workspace-actions">
+
+        <button
+            class="btn btn-warning"
+            id="btnPauseTask">
+
+            <i class="fa-solid fa-pause"></i>
+
+            Pausar
+
+        </button>
+
+        <button
+            class="btn btn-success"
+            id="btnFinishTask">
+
+            <i class="fa-solid fa-check"></i>
+
+            Finalizar
+
+        </button>
+
+    </div>
+
+</section>
+    </main>
+<!-- ===========================================================
+                    MODAL NOVA TAREFA
+============================================================ -->
+
+<div class="modal-overlay" id="taskModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Nova Tarefa</h2>
+
+            <button class="close-modal" id="closeTaskModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+
+                <label>Título</label>
+
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="Digite o nome da tarefa">
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Categoria</label>
+
+                    <select id="taskCategory">
+
+                        <option value="comercial">Comercial</option>
+                        <option value="bi">BI</option>
+                        <option value="reuniao">Reunião</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="outros">Outros</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Prioridade</label>
+
+                    <select id="taskPriority">
+
+                        <option value="baixa">Baixa</option>
+                        <option value="media" selected>Média</option>
+                        <option value="alta">Alta</option>
+                        <option value="critica">Crítica</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Tempo Previsto</label>
+
+                    <input
+                        type="number"
+                        id="taskEstimated"
+                        value="30"
+                        min="5"
+                        step="5">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tags</label>
+
+                    <input
+                        type="text"
+                        id="taskTags"
+                        placeholder="cliente, BI, contrato...">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Observações</label>
+
+                <textarea
+                    id="taskDescription"
+                    rows="4"
+                    placeholder="Anotações sobre a tarefa..."></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                id="cancelTask">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="btn btn-primary"
+                id="saveTask">
+
+                Salvar Tarefa
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/kanban.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
