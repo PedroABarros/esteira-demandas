@@ -1,0 +1,238 @@
+/* =====================================================================
+   COMPONENTS.CSS
+   Componentes reutilizáveis em várias páginas: botões, badges, cards
+   genéricos, inputs de formulário, switches (toggle) e a lista de
+   "demandas fixas" usada na Grade Horária.
+===================================================================== */
+
+/* ---------------------- Botões ---------------------- */
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 650;
+  transition: transform .06s ease, background .15s ease, box-shadow .15s ease;
+  white-space: nowrap;
+}
+.btn:active{ transform: translateY(1px); }
+.btn-block{ width: 100%; }
+.btn-sm{ padding: 6px 11px; font-size: 12.5px; border-radius: 7px; }
+.btn-icon{ padding: 7px 9px; }
+
+.btn-primary{ background: var(--primary); color: #fff; }
+.btn-primary:hover{ background: var(--primary-dark); }
+
+.btn-success{ background: var(--success); color: #fff; }
+.btn-success:hover{ background: #128a3e; }
+
+.btn-warning{ background: var(--warning); color: #fff; }
+.btn-warning:hover{ background: #d6870a; }
+
+.btn-ghost{ background: transparent; color: var(--text-soft); border: 1px solid var(--border); }
+.btn-ghost:hover{ background: var(--bg); }
+
+.btn-danger-outline{ background: transparent; color: var(--danger); border: 1px solid #f3c6c6; }
+.btn-danger-outline:hover{ background: var(--danger-soft); }
+
+/* ---------------------- Badges ---------------------- */
+
+.badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.cat-badge i{ font-size: 9px; }
+
+.prio-badge{ background: var(--bg); color: var(--text-soft); }
+.prio-badge.prio-alta{ background: var(--danger-soft); color: var(--danger); }
+.prio-badge.prio-media{ background: var(--warning-soft); color: #b06b06; }
+.prio-badge.prio-baixa{ background: var(--success-soft); color: var(--success); }
+
+/* ---------------------- Cards genéricos ---------------------- */
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+}
+.card h3{
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card h3 .count-pill{
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+/* ---------------------- Formulários ---------------------- */
+
+.field{ margin-bottom: 13px; }
+.field label{
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--text-soft);
+  margin-bottom: 5px;
+}
+.field input[type="text"],
+.field input[type="time"],
+.field input[type="number"],
+.field select,
+.field textarea{
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.field textarea{ resize: vertical; min-height: 64px; }
+.field input:focus, .field select:focus, .field textarea:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+  background: #fff;
+}
+.field-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ---------------------- Switch (toggle ativo/inativo) ---------------------- */
+
+.switch{ position: relative; width: 34px; height: 20px; flex-shrink: 0; }
+.switch input{ opacity: 0; width: 0; height: 0; }
+.switch .slider{
+  position: absolute; inset: 0;
+  background: #cbd3e0;
+  border-radius: 999px;
+  transition: background .15s ease;
+}
+.switch .slider::before{
+  content: "";
+  position: absolute;
+  width: 16px; height: 16px;
+  left: 2px; top: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .15s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.switch input:checked + .slider{ background: var(--success); }
+.switch input:checked + .slider::before{ transform: translateX(14px); }
+
+/* ---------------------- Lista de demandas fixas ---------------------- */
+
+.fixed-list{ display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
+.fixed-item{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+}
+.fixed-item.inactive{ opacity: .5; }
+.fixed-item .swatch{ width: 8px; height: 34px; border-radius: 4px; flex-shrink: 0; }
+.fixed-item .info{ flex: 1; min-width: 0; }
+.fixed-item .info .nome{
+  font-weight: 650; font-size: 13.5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fixed-item .info .meta{ font-size: 11.5px; color: var(--text-soft); }
+.fixed-item .actions{ display: flex; align-items: center; gap: 4px; }
+
+.edit-row{ display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.edit-row .er-line{ display: flex; gap: 6px; }
+.edit-row input, .edit-row select{
+  padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px;
+  background: #fff;
+}
+
+/* ---------------------- Legenda de categorias ---------------------- */
+
+.legend{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: var(--text-soft);
+}
+.legend .dot{
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.legend-row{ display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 5px 0; }
+.legend-row .legend-label{ flex: 1; color: var(--text); font-weight: 600; }
+.legend-row .legend-value{ color: var(--text-soft); }
+
+/* ---------------------- Página de Relatórios ---------------------- */
+
+.reports-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 960px){
+  .reports-grid{ grid-template-columns: 1fr; }
+}
+
+.chart-box{ position: relative; height: 210px; margin-bottom: 6px; }
+.chart-box.chart-box-sm{ height: 190px; }
+
+.report-mini-stats{
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+.report-mini-stats .rm-item{ text-align: center; }
+.report-mini-stats .rm-value{
+  display: block;
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--text);
+  font-family: "SF Mono", "Cascadia Code", Consolas, Menlo, monospace;
+}
+
+.pause-summary-card{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.pause-summary-card .pause-icon{
+  width: 50px; height: 50px;
+  border-radius: 14px;
+  background: var(--warning-soft);
+  color: var(--warning);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.pause-summary-card .pause-value{ font-size: 24px; font-weight: 800; }
+.pause-summary-card .pause-label{ font-size: 12.5px; color: var(--text-soft); }

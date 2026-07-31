@@ -1,0 +1,53 @@
+/* =====================================================================
+   MODAL.CSS
+   Overlay genérico + cartão do modal, usado tanto para "Nova Demanda"
+   quanto para "Nova Demanda Fixa".
+===================================================================== */
+
+.modal-overlay{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 28, 45, .45);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.show{ display: flex; }
+
+.modal-card{
+  display: none;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 22px;
+}
+.modal-card.show{ display: block; }
+
+.modal-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.modal-header h3{ font-size: 16px; font-weight: 750; }
+.modal-close{
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+.modal-close:hover{ background: var(--bg); }
+
+.modal-actions{
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.modal-actions .btn{ flex: 1; }

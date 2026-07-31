@@ -1,0 +1,108 @@
+/* =====================================================================
+   GRID.CSS
+   Estilos da página "Grade Horária": layout de duas colunas (fixas +
+   grade) e os blocos de tarefa desenhados sobre a grade de horários.
+===================================================================== */
+
+.timeline-layout{
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 960px){
+  .timeline-layout{ grid-template-columns: 1fr; }
+}
+
+.conflict-banner{
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--danger-soft);
+  border: 1px solid #f3c6c6;
+  color: var(--danger);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 650;
+  margin-bottom: 16px;
+}
+.conflict-banner.show{ display: flex; }
+
+.grid-wrap{
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.grid-times{
+  width: 66px;
+  flex-shrink: 0;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+}
+.grid-times .slot{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4px;
+  font-size: 11px;
+  color: var(--text-soft);
+  border-bottom: 1px dashed var(--border);
+}
+.grid-body{
+  position: relative;
+  flex: 1;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0, transparent 43px, var(--border) 43px, var(--border) 44px
+    );
+}
+.grid-body .slot-row:nth-child(odd){ background: rgba(52,84,209,0.02); }
+
+.now-line{
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--danger);
+  z-index: 5;
+  pointer-events: none;
+}
+.now-line::before{
+  content: "";
+  position: absolute;
+  left: -4px; top: -3px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+}
+
+.task-block{
+  position: absolute;
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 11.5px;
+  line-height: 1.25;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255,255,255,.25);
+}
+.task-block .t-nome{
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.task-block .t-hora{ opacity: .9; font-size: 10.5px; }
+.task-block.dynamic{ border-style: dashed; }
+.task-block.conflict{
+  outline: 2px solid var(--danger);
+  outline-offset: 1px;
+  animation: pulse-conflict 1.6s ease-in-out infinite;
+}
+@keyframes pulse-conflict{
+  0%,100%{ box-shadow: 0 0 0 0 rgba(220,38,38,.5); }
+  50%{ box-shadow: 0 0 0 4px rgba(220,38,38,0); }
+}

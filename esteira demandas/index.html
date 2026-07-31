@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esteira de Demandas V2</title>
+
+<!-- Font Awesome (ícones) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- CSS do projeto -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/kanban.css">
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/modal.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗂️</text></svg>">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============================================================ SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-layer-group"></i></div>
+      <div class="brand-text">Esteira de Demandas</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-page="dashboard">
+        <i class="fa-solid fa-house"></i><span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="kanban">
+        <i class="fa-solid fa-table-columns"></i><span>Lista de Tarefas</span>
+      </div>
+      <div class="nav-item" data-page="timeline">
+        <i class="fa-solid fa-calendar-days"></i><span>Grade Horária</span>
+      </div>
+      <div class="nav-item" data-page="reports">
+        <i class="fa-solid fa-chart-line"></i><span>Relatórios</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="nav-item" onclick="alert('Configurações: em breve nesta versão.')">
+        <i class="fa-solid fa-gear"></i><span>Configurações</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================================ COLUNA PRINCIPAL -->
+  <div class="main-col">
+
+    <!-- ---------------- HEADER ---------------- -->
+    <header class="header">
+      <button class="header-toggle" id="sidebarToggle" title="Abrir/fechar menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="header-titles">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="header-date" id="pageDate">—</div>
+      </div>
+
+      <div class="header-live" id="headerLiveIndicator">
+        <span class="pulse-dot"></span>
+        <span class="hli-text">—</span>
+      </div>
+
+      <div class="header-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="headerSearch" placeholder="Pesquisar tarefas...">
+      </div>
+
+      <div class="header-right">
+        <button class="header-icon-btn" title="Notificações">
+          <i class="fa-regular fa-bell"></i>
+          <span class="dot-badge"></span>
+        </button>
+        <div class="header-user">
+          <div class="avatar">PD</div>
+          <div class="user-meta">
+            <div class="user-name">Pedro</div>
+            <div class="user-role">Analista</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ---------------- CONTEÚDO ---------------- -->
+    <div class="content">
+
+      <!-- ================= PÁGINA: DASHBOARD ================= -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-toolbar">
+          <h2>Visão geral do dia</h2>
+        </div>
+
+        <div class="dash-row">
+          <div class="card stat-card">
+            <div class="stat-icon icon-blue"><i class="fa-solid fa-stopwatch"></i></div>
+            <div>
+              <div class="stat-label">Horas Trabalhadas</div>
+              <div class="stat-value mono" id="dashWorked">00h00</div>
+            </div>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon icon-blue"><i class="fa-regular fa-clock"></i></div>
+            <div>
+              <div class="stat-label">Horas Planejadas</div>
+              <div class="stat-value mono" id="dashPlanned">00h00</div>
+            </div>
+          </div>
+
+          <div class="card stat-card open-demands">
+            <div class="stat-icon icon-orange"><i class="fa-solid fa-table-columns"></i></div>
+            <div>
+              <div class="stat-label">Demandas Abertas</div>
+              <div class="stat-value" id="dashOpenTodo">0</div>
+              <div class="open-demands-breakdown">
+                <span>A fazer: <strong id="dashOpenTodoBreak">0</strong></span>
+                <span>Em execução: <strong id="dashOpenProgress">0</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+            <div>
+              <div class="stat-label">Concluídas Hoje</div>
+              <div class="stat-value" id="dashOpenDone">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-row-2">
+          <div class="card productivity-card">
+            <h3>Produtividade</h3>
+            <div class="productivity-chart-wrap">
+              <canvas id="productivityChart"></canvas>
+              <div class="pct-label"><span id="productivityPct">0%</span></div>
+            </div>
+            <div class="productivity-legend">
+              <div class="pl-item">Livres<span class="pl-value" id="dashFreeTime">00h00</span></div>
+              <div class="pl-item">Ocupadas<span class="pl-value" id="dashBusyTime">00h00</span></div>
+            </div>
+          </div>
+
+          <div class="card current-task-card">
+            <h3>Tarefa Atual</h3>
+            <div id="currentTaskBox"></div>
+          </div>
+
+          <div class="card activity-card">
+            <h3>Últimas atividades</h3>
+            <div id="activityLogList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PÁGINA: KANBAN ================= -->
+      <section class="page" id="page-kanban">
+        <div class="page-toolbar">
+          <h2>Lista de Tarefas</h2>
+          <button class="btn btn-primary js-open-new-task">
+            <i class="fa-solid fa-plus"></i> Nova Demanda
+          </button>
+        </div>
+
+        <div class="kanban-board">
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <span class="dot todo"></span>
+              <h4>A Fazer</h4>
+              <span class="count-pill" id="kanban-todo-count">0</span>
+            </div>
+            <div class="kanban-col-body" id="kanban-todo"></div>
+          </div>
+
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <span class="dot progress"></span>
+              <h4>Em Execução</h4>
+              <span class="count-pill" id="kanban-progress-count">0</span>
+            </div>
+            <div class="kanban-col-body" id="kanban-progress"></div>
+          </div>
+
+          <div class="kanban-col">
+            <div class="kanban-col-header">
+              <span class="dot done"></span>
+              <h4>Finalizado</h4>
+              <span class="count-pill" id="kanban-done-count">0</span>
+            </div>
+            <div class="kanban-col-body" id="kanban-done"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PÁGINA: GRADE HORÁRIA ================= -->
+      <section class="page" id="page-timeline">
+        <div class="page-toolbar">
+          <h2>Grade Horária</h2>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-ghost btn-sm" id="btnExportData" title="Exportar demandas, demandas fixas e histórico em JSON">
+              <i class="fa-solid fa-file-export"></i> Exportar
+            </button>
+            <button class="btn btn-ghost btn-sm" id="btnImportData" title="Importar dados de um arquivo JSON">
+              <i class="fa-solid fa-file-import"></i> Importar
+            </button>
+            <input type="file" id="fileImportData" accept="application/json" style="display:none;">
+          </div>
+        </div>
+
+        <div class="conflict-banner" id="conflictBanner">
+          <i class="fa-solid fa-triangle-exclamation"></i> <span id="conflictText"></span>
+        </div>
+
+        <div class="timeline-layout">
+          <div class="left-col">
+            <div class="card">
+              <h3>Demandas fixas <span class="count-pill" id="fixedCountPill">0</span></h3>
+              <div class="fixed-list" id="fixedList"></div>
+              <button class="btn btn-ghost btn-block js-open-new-fixed">
+                <i class="fa-solid fa-plus"></i> Nova demanda fixa
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Grade do dia <span class="count-pill">08:00 – 15:30</span></h3>
+            <div class="grid-wrap">
+              <div class="grid-times" id="gridTimes"></div>
+              <div class="grid-body" id="gridBody"></div>
+            </div>
+            <div class="legend">
+              <span><span class="dot" style="background:#2563eb"></span>Reunião</span>
+              <span><span class="dot" style="background:#16a34a"></span>BI</span>
+              <span><span class="dot" style="background:#f97316"></span>Comercial</span>
+              <span><span class="dot" style="background:#dc2626"></span>Urgente</span>
+              <span><span class="dot" style="background:#7f8b9b"></span>Outros</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PÁGINA: RELATÓRIOS ================= -->
+      <section class="page" id="page-reports">
+        <div class="page-toolbar">
+          <h2>Relatórios</h2>
+        </div>
+
+        <div class="reports-grid">
+          <div class="card">
+            <h3>Resumo do dia</h3>
+            <div class="chart-box"><canvas id="dayChart"></canvas></div>
+            <div class="report-mini-stats">
+              <div class="rm-item"><span class="rm-value" id="repWorkedLabel">00h00</span>Ocupado</div>
+              <div class="rm-item"><span class="rm-value" id="repFreeLabel">00h00</span>Livre</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Tempo por categoria</h3>
+            <div class="chart-box chart-box-sm"><canvas id="categoryChart"></canvas></div>
+            <div id="categoryLegend"></div>
+          </div>
+
+          <div class="card" style="grid-column: span 2;">
+            <h3>Produtividade semanal</h3>
+            <div class="chart-box"><canvas id="weeklyChart"></canvas></div>
+          </div>
+
+          <div class="card pause-summary-card" style="grid-column: span 2;">
+            <div class="pause-icon"><i class="fa-solid fa-pause"></i></div>
+            <div>
+              <div class="pause-value mono" id="repPausedLabel">00h00</div>
+              <div class="pause-label">Tempo total de pausas hoje</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ MODAIS -->
+<div class="modal-overlay" id="modalOverlay">
+
+  <!-- Modal: Nova Demanda (Kanban) -->
+  <div class="modal-card" id="modalNewTask">
+    <div class="modal-header">
+      <h3>Nova Demanda</h3>
+      <button type="button" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="formNewTask">
+      <div class="field">
+        <label for="nt-title">Nome da demanda</label>
+        <input type="text" id="nt-title" placeholder="Ex: Atualizar relatório comercial" required>
+      </div>
+      <div class="field">
+        <label for="nt-description">Descrição (opcional)</label>
+        <textarea id="nt-description" placeholder="Detalhes da demanda..."></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="nt-category">Categoria</label>
+          <select id="nt-category">
+            <option value="reuniao">Reunião</option>
+            <option value="bi">BI</option>
+            <option value="comercial">Comercial</option>
+            <option value="urgente">Urgente</option>
+            <option value="outros" selected>Outros</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="nt-priority">Prioridade</label>
+          <select id="nt-priority">
+            <option value="baixa">Baixa</option>
+            <option value="media" selected>Média</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="nt-estimated">Tempo estimado (minutos)</label>
+        <input type="number" id="nt-estimated" value="60" min="5" step="5" required>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost modal-close">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Criar tarefa</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal: Nova Demanda Fixa -->
+  <div class="modal-card" id="modalNewFixed">
+    <div class="modal-header">
+      <h3>Nova Demanda Fixa</h3>
+      <button type="button" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="formNewFixed">
+      <div class="field">
+        <label for="nf-title">Nome</label>
+        <input type="text" id="nf-title" placeholder="Ex: Reunião de time" required>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="nf-time">Horário</label>
+          <input type="time" id="nf-time" value="08:00" min="08:00" max="15:30" required>
+        </div>
+        <div class="field">
+          <label for="nf-duration">Duração (min)</label>
+          <input type="number" id="nf-duration" value="30" min="5" step="5" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="nf-category">Categoria</label>
+        <select id="nf-category">
+          <option value="reuniao">Reunião</option>
+          <option value="bi">BI</option>
+          <option value="comercial">Comercial</option>
+          <option value="urgente">Urgente</option>
+          <option value="outros" selected>Outros</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost modal-close">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!-- Chart.js (gráficos dos relatórios e do dashboard) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+<!-- Scripts do projeto (ordem: dados/base primeiro, orquestrador por último) -->
+<script src="js/storage.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/kanban.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
